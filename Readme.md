@@ -101,7 +101,106 @@ Transform this vanilla application into a production-ready, containerized system
 - **Jenkins** - CI/CD pipeline (YOU BUILD)
 - **Nginx** - Web server & reverse proxy (YOU BUILD)
 
-## 🚀 Quick Start
+## � API Documentation
+
+### Base URL
+```
+http://localhost:8080/api
+```
+
+### Authentication
+All API endpoints (except auth) require JWT token in Authorization header:
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Endpoints
+
+#### 🔐 Authentication
+```
+POST /auth/signup
+- Register new user
+- Body: { "name": "string", "email": "string", "password": "string" }
+- Response: { "jwt": "string", "user": {...} }
+
+POST /auth/signin
+- User login
+- Body: { "email": "string", "password": "string" }
+- Response: { "jwt": "string", "user": {...} }
+```
+
+#### 👤 User Management
+```
+GET /users/profile
+- Get current user profile
+- Response: User object
+
+GET /users/{query}
+- Search users by name/email
+- Response: Array of User objects
+
+PUT /users/update
+- Update user profile
+- Body: { "name": "string", "profile": "url" }
+- Response: Updated User object
+```
+
+#### 💬 Chat Management
+```
+GET /chats/user
+- Get user's chats
+- Response: Array of Chat objects
+
+POST /chats/group
+- Create group chat
+- Body: { "chatName": "string", "chatImage": "url", "userIds": [...] }
+- Response: Created Chat object
+
+PUT /chats/{chatId}/add/{userId}
+- Add user to group
+- Response: Updated Chat object
+
+PUT /chats/{chatId}/remove/{userId}
+- Remove user from group
+- Response: Updated Chat object
+```
+
+#### 💭 Message Management
+```
+GET /messages/chat/{chatId}
+- Get chat messages
+- Response: Array of Message objects
+
+POST /messages/chat/{chatId}
+- Send message
+- Body: { "content": "string", "chatId": "number" }
+- Response: Created Message object
+```
+
+#### 🏥 Health Check
+```
+GET /health
+- Service health status
+- Response: "OK"
+```
+
+### Response Format
+```json
+{
+  "message": "Success message",
+  "status": true
+}
+```
+
+### Error Response
+```json
+{
+  "message": "Error description",
+  "status": false
+}
+```
+
+## �🚀 Quick Start
 
 ### **Just Registered? Start Here!**
 
