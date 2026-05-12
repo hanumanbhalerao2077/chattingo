@@ -42,17 +42,13 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ApiResponse> updateUserHandler(@RequestBody UpdateUserRequest request,
+    public ResponseEntity<User> updateUserHandler(@RequestBody UpdateUserRequest request,
             @RequestHeader("Authorization") String token) throws UserException {
 
         User user = this.userService.findUserProfile(token);
-        this.userService.updateUser(user.getId(), request);
+        User updatedUser = this.userService.updateUser(user.getId(), request);
 
-        ApiResponse response = new ApiResponse();
-        response.setMessage("User updated Successfully");
-        response.setStatus(true);
-
-        return new ResponseEntity<ApiResponse>(response, HttpStatus.ACCEPTED);
+        return new ResponseEntity<User>(updatedUser, HttpStatus.ACCEPTED);
     }
 
 }

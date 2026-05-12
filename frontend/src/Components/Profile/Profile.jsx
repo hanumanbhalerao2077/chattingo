@@ -77,8 +77,8 @@ const Profile = ({ handleCloseOpenProfile }) => {
           <img
             className="rounded-full w-[15vw] h-[15vw] cursor-pointer"
             src={
-              auth.reqUser.profile ||
               tempPicture ||
+              auth.reqUser.profile ||
               "https://media.istockphoto.com/id/521977679/photo/silhouette-of-adult-woman.webp?b=1&s=170667a&w=0&k=20&c=wpJ0QJYXdbLx24H5LK08xSgiQ3zNkCAD2W3F74qlUL0="
             }
             alt=""

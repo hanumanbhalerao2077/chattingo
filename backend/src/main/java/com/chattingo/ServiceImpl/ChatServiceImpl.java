@@ -68,6 +68,7 @@ public class ChatServiceImpl implements ChatService {
         group.setChatName(req.getChatName());
         group.setCreatedBy(reqUser);
         group.getAdmins().add(reqUser);
+        group.getUsers().add(reqUser);
 
         for (Integer userId : req.getUserIds()) {
             User user = this.userService.findUserById(userId);

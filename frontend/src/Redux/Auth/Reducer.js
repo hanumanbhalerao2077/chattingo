@@ -27,7 +27,7 @@ export const authReducer = (store = initialValue, { type, payload }) => {
   } else if (type === SEARCH_USER) {
     return { ...store, searchUser: payload };
   } else if (type === UPDATE_USER) {
-    return { ...store, updateUser: payload };
+    return { ...store, updateUser: payload, reqUser: payload };
   }
   // If the action type is not recognized, return the current store unchanged
   return store;
