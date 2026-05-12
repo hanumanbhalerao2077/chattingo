@@ -1,23 +1,131 @@
-# IDE and Editor files
+# ============================================
+# IDE and Editor Files
+# ============================================
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env.local
+.env.*.local
+*.iml
+*.sublime-workspace
+*.sublime-project
 
+# ============================================
+# Backend (Java/Maven)
+# ============================================
+target/
+build/
+dist/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.7z
 
-# OS files
+# Maven
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.m2/
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ============================================
+# Frontend (Node.js/React)
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.pnp
+.pnp.js
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# ============================================
+# Docker and Containers
+# ============================================
+.docker/
+docker-compose.override.yml
+.dockerignore
+
+# ============================================
+# Database and Secrets
+# ============================================
+.env
+!.env.example
+.env.local
+.env.*.local
+!.env.development
+!.env.production
+*.sql
+!init-db.sql
+secrets/
+*.pem
+*.key
+*.crt
+.mysql_history
+
+# ============================================
+# Logs
+# ============================================
+logs/
+*.log
+npm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# OS Files
+# ============================================
+Thumbs.db
 .DS_Store
 .DS_Store?
+.AppleDouble
+.LSOverride
 ._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
 
-# Environment files (keep examples, ignore actual .env files)
-.env
-!.env.example
+# ============================================
+# Temporary Files
+# ============================================
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
 
-# Logs and temporary files
-*.log
+# ============================================
+# Jenkins
+# ============================================
+workspace/
+jobs/
+builds/
+.jenkins/
+
+# ============================================
+# Project Specific
+# ============================================
+uploads/
+downloads/
+cache/
+.cache/
 logs/
 tmp/
 temp/
