@@ -41,22 +41,29 @@ const NewGroup = ({ groupMember, setIsGroup }) => {
 
   // Function to upload an image to Cloudinary
   const uploadToCloudinary = (pics) => {
-    // Set the image uploading flag to true
+    if (!pics) return;
     setIsImageUploading(true);
-    // Create a new FormData object and append the selected file to it
     const data = new FormData();
     data.append("file", pics);
     data.append("upload_preset", "chattingo");
     data.append("cloud_name", "dadlxgune");
-    // Make a POST request to Cloudinary's API to upload the image
     fetch("https://api.cloudinary.com/v1_1/dadlxgune/image/upload", {
       method: "post",
       body: data,
     })
       .then((res) => res.json())
       .then((data) => {
-        // Set the group image URL and update the image uploading flag
-        setGroupImage(data.url.toString());
+        const imageUrl = data.secure_url || data.url;
+        if (!imageUrl) {
+          console.error("Cloudinary upload failed", data);
+          setIsImageUploading(false);
+          return;
+        }
+        setGroupImage(imageUrl);
+        setIsImageUploading(false);
+      })
+      .catch((error) => {
+        console.error("Cloudinary upload error", error);
         setIsImageUploading(false);
       });
   };

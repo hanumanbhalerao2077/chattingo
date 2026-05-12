@@ -30,6 +30,7 @@ const Profile = ({ handleCloseOpenProfile }) => {
   };
 
   const uploadToCloudinary = (pics) => {
+    if (!pics) return;
     const data = new FormData();
     data.append("file", pics);
     data.append("upload_preset", "chattingo");
@@ -40,13 +41,21 @@ const Profile = ({ handleCloseOpenProfile }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setTempPicture(data.url.toString());
+        const imageUrl = data.secure_url || data.url;
+        if (!imageUrl) {
+          console.error("Cloudinary upload failed", data);
+          return;
+        }
+        setTempPicture(imageUrl);
         const dataa = {
           id: auth.reqUser.id,
           token: localStorage.getItem("token"),
-          data: { profile: data.url.toString() },
+          data: { profile: imageUrl },
         };
         dispatch(updateUser(dataa));
+      })
+      .catch((error) => {
+        console.error("Cloudinary upload error", error);
       });
   };
 
