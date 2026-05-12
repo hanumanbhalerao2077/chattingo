@@ -25,6 +25,10 @@ COPY --from=builder /build/target/chattingo-0.0.1-SNAPSHOT.jar app.jar
 
 # Create a non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Install runtime utilities required by health checks
+RUN apk add --no-cache curl
+
 USER appuser
 
 # Expose the port that Spring Boot uses
